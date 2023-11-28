@@ -1,0 +1,49 @@
+{% extends "layouts/master.html" %}
+{% block title %}Dashboard - Event Registration{% endblock title %} 
+{% load static %} 
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="card px-3">
+        <div class="card-body">
+            <h4 class="card-title">Welcome to the Dashboard</h4>
+            {% comment %} <form class="mb-3" action="{% url 'charts' %}" method="POST">
+                {% csrf_token %}
+                <div class="row d-flex justify-content-start">
+                    <div class="col-3">
+                        <label for="">Labels</label>
+                        <select class="" name="filter_label">
+                            <option value="{{ input_filter_label }}">{{ input_filter_label }}</option>
+                            {% for item in filter_labels %}
+                            {% if item is not None %}<option value="{{ item }}">{{ item }}</option>{% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="">Values</label>
+                        <select class="" name="filter_value">
+                            <option value="{{ input_filter_value }}">{{ input_filter_value }}</option>
+                            {% for item in filter_values %}
+                            {% if item is not None %}<option value="{{ item }}">{{ item }}</option>{% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="">Chart</label>
+                        <select class="" name="filter_chart">
+                            <option value="{{ input_filter_chart }}">{{ input_filter_chart }}</option>
+                            <option value="pie">Pie</option>
+                            <option value="bar">Bar</option>
+                            <option value="line">Line</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-warning rounded-0 p-1 text-white">Show</button>
+                    </div>
+                </div>
+            </form> {% endcomment %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
