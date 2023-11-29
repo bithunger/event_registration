@@ -1,9 +1,11 @@
 from django.shortcuts import render
-
+from events.models import Event
+from user_dashboard.models import UserEvent
 
 
 def event_list(request):
-    return render(request, 'events/event_list.html')
+    events = Event.objects.all()
+    return render(request, 'events/event_list.html', {'events': events})
 
 
 

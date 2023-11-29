@@ -54,8 +54,11 @@ def sign_in(request):
 
         if user is not None:
             authlogin(request, user)
-            if request.GET.get('next', None):
-                return redirect(request.GET['next'])
+            
+            # if request.GET.get('next', None):
+            #     return redirect(request.GET['next'])
+            
+            messages.success(request, 'You are successfully Sign in')
             return redirect('event-list')
         else:
             messages.error(request, 'Bad credential')
