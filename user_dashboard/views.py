@@ -22,17 +22,19 @@ def register_event(request, pk):
     user = User.objects.get(id=request.user.id)
     event = Event.objects.get(id=pk)
     
-    try:
-        UserEvent.objects.get(user=user, user_event=event)
-        messages.error(request, "You already registered in this event")
-        print(event)
-    except:
-        # create user event
-        UserEvent.objects.create(user=user, user_event=event)
-        messages.success(request, "Event registered successfully")
-        # sub a event slot
-        event.slots = int(event.slots)-1
-        event.save()
+    if event.slots>0:
+        try:
+            UserEvent.objects.get(user=user, user_event=event)
+            messages.error(request, "You already registered in this event")
+        except:
+            # create user event
+            UserEvent.objects.create(user=user, user_event=event)
+            messages.success(request, "Event registered successfully")
+            # sub a event slot
+            event.slots = int(event.slots)-1
+            event.save()
+    else:
+        messages.error(request, "No slots available for this event")
     
     return redirect('my-events')
 
