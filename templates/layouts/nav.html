@@ -1,9 +1,4 @@
-{% comment %} <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-	<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-		<div><b>Dashboard Visualization</b></div>
-	</div>
-</nav> {% endcomment %}
-
+{% load static %}
 
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 	<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -29,21 +24,25 @@
 		<ul class="navbar-nav navbar-nav-right">
 			<li class="nav-item nav-profile dropdown">
 				<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-					<img src="../../../../images/faces/face28.jpg" alt="profile" />
+					<img src="{% static 'image/blank_profile.jpg' %}" alt="profile" />
 				</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-					<a class="dropdown-item">
-						<i class="fa-solid fa-arrow-right-to-bracket"></i>
-						Login
-					</a>
-					<a class="dropdown-item">
+					{% if request.user.is_authenticated %}
+					<a class="dropdown-item" href="{% url 'sign-out' %}">
 						<i class="fa-solid fa-arrow-right-from-bracket"></i>
-						Logout
+						Signout
 					</a>
-					<a class="dropdown-item">
+					{% else %}
+					<a class="dropdown-item" href="{% url 'sign-in' %}">
+						<i class="fa-solid fa-arrow-right-to-bracket"></i>
+						Signin
+					</a>
+					<a class="dropdown-item" href="{% url 'registration' %}">
 						<i class="fa-regular fa-address-card"></i>
 						Register
 					</a>
+					{% endif %}
+					
 				</div>
 			</li>
 		</ul>
