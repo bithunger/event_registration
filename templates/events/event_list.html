@@ -9,9 +9,9 @@
 			<div class="card">
 				<div class="card-body">
 					<h4 class="card-title">Event list</h4>
-					<form action="#">
+					<form action="{% url 'event-list' %}">
 						<div class="form-group d-flex search-field">
-							<input type="text" class="form-control" placeholder="Search Here">
+							<input name="search" type="text" class="form-control" placeholder="Search Here">
 							<button type="submit" class="btn btn-primary ms-3">Search</button>
 						</div>
 					</form>
