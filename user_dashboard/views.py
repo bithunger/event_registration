@@ -26,7 +26,7 @@ def register_event(request, pk):
         UserEvent.objects.get(user=user, user_event=event)
         messages.error(request, "You already registered in this event")
     except:
-        if event.slots>0:
+        if event.slots<=0:
             messages.error(request, "No slots available for this event")
                 
         # create user event

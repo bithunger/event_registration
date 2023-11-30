@@ -2,12 +2,16 @@
 
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 	<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-		<div><b>Event Registration</b></div>
+		<div><a class='nav-link' href="{% url 'event-list' %}"><b>Event Registration</b></a></div>
 	</div>
 	<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 		<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
 			<span><i class="fa-solid fa-grip-vertical"></i></span>
 		</button>
+		{% if request.user.is_authenticated %}
+		<div class="ms-3"><a class='nav-link' href="{% url 'dashboard' %}"><b>Dashboard</b></a></div>
+		{% endif %}
+		
 		<ul class="navbar-nav navbar-nav-right">
 			<li class="nav-item dropdown me-1">
 				<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
