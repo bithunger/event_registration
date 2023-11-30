@@ -3,100 +3,96 @@
 {% load static %}
 {% block content %}
 
-<div class="content-wrapper">
-	<div class="row">
-		<div class="col-12 grid-margin">
-			<div class="card">
-				<div class="card-body">
-					<h4 class="card-title">Event list</h4>
-					<form action="{% url 'event-list' %}">
-						<div class="form-group d-flex search-field">
-							<input name="search" type="text" class="form-control" placeholder="Search Here">
-							<button type="submit" class="btn btn-primary ms-3">Search</button>
-						</div>
-					</form>
+<div class="main-panel w-100">
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-12 grid-margin">
+
+				{% for msg in messages %}
+				{% if msg.tags == 'error' %}
+				<div class="alert alert-danger alert-dismissible" role="alert">
+					{{ msg }}
+				</div>
+				{% else %}
+				<div class="alert alert-success alert-dismissible" role="alert">
+					{{ msg }}
+				</div>
+				{% endif %}
+				{% endfor %}
+
+				<div class="card">
+					<div class="card-body">
+						<a href="{% url 'event-list' %}"><h4 class="card-title">Event list</h4></a>
+						<form action="{% url 'event-list' %}">
+							<div class="form-group d-flex search-field">
+								<input name="search" type="text" class="form-control" placeholder="Search Here">
+								<button type="submit" class="btn btn-primary ms-3">Search</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-12 col-md-12">
+		<div class="row">
+			<div class="col-12 col-md-12">
 
-			{% for msg in messages %}
-			{% if msg.tags == 'error' %}
-			<div class="alert alert-danger alert-dismissible" role="alert">
-				{{ msg }}
-			</div>
-			{% else %}
-			<div class="alert alert-success alert-dismissible" role="alert">
-				{{ msg }}
-			</div>
-			{% endif %}
-			{% endfor %}
-
-			{% if events %}
-			<div class="row">
-				{% for event in events %}
-				<div class="col-12 grid-margin">
-					<div class="card">
-						<div class="faq-block card-body">
-							<div class="container-fluid py-2 row">
-								<div class="col">
-									<h5>Event&nbsp;{{ forloop.counter }}</h5>
-								</div>
-								<div class="col badge badge-info">
-									<h5>Date:&nbsp;{{ event.date }}</h5>
-								</div>
-								<div class="col badge badge-info">
-									<h5>Time:&nbsp;{{ event.time }}</h5>
-								</div>
-								<div class="col badge badge-info">
-									<h5>Slots available:&nbsp;{{ event.slots }}</h5>
-								</div>
-							</div>
-							<div id="accordion-1" class="accordion">
-								<div class="card">
-									<div class="card-header" id="headingOne">
-										<h5 class="mb-0">
-											<a data-bs-toggle="collapse" data-bs-target="#collapseOne"
-												aria-expanded="true" aria-controls="collapseOne">
-												{{ event.title }}
-											</a>
-										</h5>
+				{% if events %}
+				<div class="row">
+					{% for event in events %}
+					<div class="col-12 grid-margin">
+						<div class="card">
+							<div class="faq-block card-body">
+								<div class="container-fluid py-2 row">
+									<div class="col">
+										<h5>Event&nbsp;{{ forloop.counter }}</h5>
 									</div>
-									<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-										data-bs-parent="#accordion-1">
-										<div class="card-body">
-											<p class="mb-0">
-												{{ event.description }}
-											<p>
+									<div class="col badge badge-info">
+										<h5>Date:&nbsp;{{ event.date }}</h5>
+									</div>
+									<div class="col badge badge-info">
+										<h5>Time:&nbsp;{{ event.time }}</h5>
+									</div>
+									<div class="col badge badge-info">
+										<h5>Slots available:&nbsp;{{ event.slots }}</h5>
+									</div>
+								</div>
+								<div id="accordion-1" class="accordion">
+									<div class="card">
+										<div class="card-header" id="headingOne">
+											<h5 class="mb-0">
+												<a data-bs-toggle="collapse" data-bs-target="#collapseOne"
+													aria-expanded="true" aria-controls="collapseOne">
+													{{ event.title }}
+												</a>
+											</h5>
+										</div>
+										<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+											data-bs-parent="#accordion-1">
+											<div class="card-body">
+												<p class="mb-0">
+													{{ event.description }}
+												<p>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="mt-3">
-									<a href="{% url 'register-event' event.id %}"><button type="button" class="btn btn-info btn-clipboard">Register</button></a>
+									<div class="mt-3">
+										<a href="{% url 'register-event' event.id %}"><button type="button" class="btn btn-info btn-clipboard">Register</button></a>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					{% endfor %}
 				</div>
-				{% endfor %}
+				{% else %}
+				<h3>No events found</h3>
+				{% endif %}
 			</div>
-			<nav>
-				<ul class="pagination flex-wrap">
-				  <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-circle-chevron-left"></i></a></li>
-				  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-				  <li class="page-item"><a class="page-link" href="#">2</a></li>
-				  <li class="page-item"><a class="page-link" href="#">3</a></li>
-				  <li class="page-item"><a class="page-link" href="#">4</a></li>
-				  <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-circle-chevron-right"></i></a></li>
-				</ul>
-			</nav>
-			{% else %}
-			<h3>No events found</h3>
-			{% endif %}
-		</div>
-	</div><!-- parent row -->
+		</div><!-- parent row -->
+	</div>
+
+	<!-- footer -->
+	{% include "layouts/footer.html" %}
 </div>
 
 {% endblock content %}

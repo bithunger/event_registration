@@ -7,17 +7,10 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+        <a class="nav-link" href="{% url 'my-events' %}">
           <i class="fa-solid fa-calendar-days me-3"></i>
-          <span class="menu-title">Events</span>
-          <i class="menu-arrow"></i>
+            <span class="menu-title"> My Events </span>
         </a>
-        <div class="collapse" id="error">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{% url 'event-list' %}"> Event List </a></li>
-            <li class="nav-item"> <a class="nav-link" href="{% url 'my-events' %}"> My Event </a></li>
-          </ul>
-        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
@@ -36,7 +29,7 @@
       <li class="nav-item">
         <a class="nav-link" href="../documentation/documentation.html">
           <i class="fa-solid fa-book me-3"></i>
-          <span class="menu-title">Documentation</span>
+          <span class="menu-title">API Documentation</span>
         </a>
       </li>
     </ul>

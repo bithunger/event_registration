@@ -14,15 +14,8 @@
 		{% include "layouts/nav.html" %}
 
 		<div class="container-fluid page-body-wrapper">
-			<!-- side navbar -->
-			{% include "layouts/side_nav.html" %}
-
-			<div class="main-panel">
-				<!-- content -->
-				{% block content %}{% endblock content %}
-				<!-- footer -->
-				{% include "layouts/footer.html" %}
-			</div>
+			<!-- content -->
+			{% block content %}{% endblock content %}
 		</div>
 	</div>
 
